@@ -9,14 +9,14 @@ from sqlalchemy.orm import sessionmaker
 app = Flask(__name__)
 Base = declarative_base()
 
-ct = 30
+ct = 40
 
 
 class Person(Base):
     __tablename__ = "people"
     ssn = Column("ssn", Integer, primary_key=True)
-    firstname = Column("firstname", VARCHAR)
-    lastname = Column("lastname", VARCHAR)
+    firstname = Column("firstname", String)
+    lastname = Column("lastname", String)
     gender = Column("gender", CHAR)
     age = Column("age", Integer)
 
@@ -31,7 +31,7 @@ class Person(Base):
         return f"({self.ssn} {self.first} {self.last} {self.gender} {self.age})"
 
 
-engine = create_engine('postgresql://micha:a0cb03f17886@localhost:5432/data')
+engine = create_engine('postgresql://admin:a0cb03f17886@localhost:5432/data')
 Base.metadata.create_all(bind=engine)
 
 Session = sessionmaker(bind=engine)
@@ -57,7 +57,7 @@ def get_user(user_id):
 @app.route("/user", methods=['GET'])
 def get_users():
     people = session.query(Person)
-    logging.log()
+    logging.info(people[0].firstname)
     result = ""
     for person in people:
         result = result + f"<p>{person.firstname} {person.lastname}'s gender is {person.gender} and he is {person.age} years old. His ID is {person.ssn}</p>"
