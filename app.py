@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 from sqlalchemy import create_engine, ForeignKey, String, Integer, Column, VARCHAR, CHAR, null
 from sqlalchemy.ext.declarative import declarative_base
@@ -81,4 +81,4 @@ def get_users():
 
 @app.route("/")
 def index():
-    return ""
+    return render_template('index.html')
