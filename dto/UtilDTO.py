@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer
-from common.common import common
+from common.Common import Common
 
 
-class UtilDTO(common.base):
+class UtilDTO(Common.base):
     __tablename__ = "util"
     ssn = Column("ssn", Integer, primary_key=True)
     person_counter = Column("person_counter", Integer)

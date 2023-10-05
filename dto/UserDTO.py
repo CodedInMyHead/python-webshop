@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, CHAR
-from common.common import common
+from common.Common import Common
 
 
-class PersonDTO(common.base):
+class PersonDTO(Common.base):
     __tablename__ = "people"
     ssn = Column("ssn", Integer, primary_key=True)
     firstname = Column("firstname", String)
